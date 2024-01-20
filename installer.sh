@@ -27,6 +27,8 @@ install_brew() {
   if [ $? -ne 0 ]; then
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
     export PATH=$PATH:/opt/homebrew/bin
+
+    command echo "$(brew -v) installed!"
   else
     command echo "The homebrew is already installed. So, the process is skipped."
   fi
@@ -50,4 +52,6 @@ command echo "Your operation system is recognized: ${OS}"
 
 if [[ $OS == 'Mac' ]]; then
   install_brew
+else
+  exit 0
 fi
