@@ -33,6 +33,17 @@ install_brew() {
   fi
 }
 
+install_base_dependencies() {
+  if [[ $# -lt 1 ]]; then
+    command echo "Your operating system does not passed!"
+    return 1
+  fi
+
+  if [[ $1 == "Mac" ]]; then
+    brew bundle -v --file="./dependencies/Brewfile"
+  fi
+}
+
 while [ $# -gt 0 ]
 do
   case ${1} in
@@ -54,3 +65,5 @@ if [[ $OS == 'Mac' ]]; then
 else
   exit 0
 fi
+
+install_base_dependencies $OS
