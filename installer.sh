@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -u
+set -ue
 
 helpmsg() {
   command echo "Usage: $0 [...options]" 0>&2
@@ -22,9 +22,8 @@ check_os() {
 
 install_brew() {
   command echo "Install homebrew process started."
-  brew -v >> /dev/null
   
-  if [ $? -ne 0 ]; then
+  if [[ "$(command -v brew)" == "" ]]; then
     curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
     export PATH=$PATH:/opt/homebrew/bin
 
